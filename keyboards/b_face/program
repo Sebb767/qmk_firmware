@@ -1,0 +1,9 @@
+#!/bin/sh
+# This is a simple sh script to program the keyboard when it's already in bootloader mode
+
+if [ $# -ne 1 ]; then
+	echo "Usage: $0 program.hex"
+	exit 1
+fi
+
+bootloadHID -r "$1"
