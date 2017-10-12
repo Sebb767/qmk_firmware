@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	KC_TRNS, KC_TRNS, KC_UP,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_INS,  KC_TRNS, KC_PSCR, KC_SLCK, KC_PAUS, KC_FN1 ,
 	KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, BL_DEC,  BL_INC,  KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT, KC_HOME, KC_PGUP, KC_TRNS,
 	KC_LSFT, KC_F14,  EF_INC,  KC_TRNS, KC_INS,  KC_TRNS, KC_VOLD, KC_VOLU, KC_MUTE, KC_END,  KC_PGDN, KC_TRNS,
-	KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
+	KC_TRNS, KC_TRNS, KC_TRNS, BL_ON,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
 // arrow layer
@@ -103,6 +103,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 						unregister_code(KC_RCTL);
 					}
 					return false;
+					break;
+		case BL_ON:
+					PORTD |= (1 << 4);
 					break;
 	}
 	
