@@ -41,7 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef BACKLIGHT_ENABLE
 	// so far, this pin is not set correctly. Therefore, the backlight on the keys will not work
-    #define BACKLIGHT_PIN C6
+    #define BACKLIGHT_PIN D4
     #define BACKLIGHT_LEVELS 5
 #endif
 
