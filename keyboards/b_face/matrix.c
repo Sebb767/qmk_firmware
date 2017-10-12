@@ -47,6 +47,9 @@ void matrix_init(void) {
         matrix[row] = 0x00;
         matrix_debouncing[row] = 0x00;
     }
+
+	// activate backlight
+	PORTD |= (1 << 4);
 }
 
 void matrix_set_row_status(uint8_t row) {
