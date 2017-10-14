@@ -49,7 +49,11 @@ void matrix_init(void) {
     }
 
 	// activate backlight
-	PORTD |= (1 << 4);
+	//PORTD |= (1 << 4);
+	//_SFR_IO8(0x09) |= (1 << 4); //_BV(0x94 & 0xF);
+	//
+	// this is the code that *should* be executed in quantum.c
+	_SFR_IO8(0x12) |= _BV(0x4);
 }
 
 void matrix_set_row_status(uint8_t row) {
