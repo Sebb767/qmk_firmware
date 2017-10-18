@@ -22,6 +22,7 @@
 #endif
 #include <stddef.h>
 #include <stdlib.h>
+#include "backlight.h"
 
 #ifndef PS2AVRGB_BACKLIGHT_H
 #define PS2AVRGB_BACKLIGHT_H
