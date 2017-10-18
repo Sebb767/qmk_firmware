@@ -16,7 +16,13 @@
 
 #ifdef BACKLIGHT_ENABLE
 
-#include "backlight.h"
+#include "backlight_ps2avrGB.h"
+#define sbi(reg,bit)	reg |= (_BV(bit))
+#define cbi(reg,bit)	reg &= (~_BV(bit))
+#define PWM10	WGM10
+#define PWM11	WGM11
+#define COM1x1 COM1B1
+#define OCR1x  OCR1B
 
 void backlight_init_ports(void)
 {
@@ -27,8 +33,23 @@ void backlight_init_ports(void)
 #endif
 
 	// setup pwm
+	// this bitmagic is sourced from the original firmware
+	/*TCCR1B = ((TCCR1B & ~0x07) | 0x03);
+	TCNT1H = 0;
+	TCNT1L = 0;
+	sbi(TIMSK, TOIE1);
 	OCR1BH = 0;
 	OCR1BL = 0;
+	cbi(TCCR1A,PWM11);
+	sbi(TCCR1A,PWM10);
+	sbi(TCCR1A,COM1B1);
+	cbi(TCCR1A,COM1B0);*/
+	ICR1 = 0xFFFF;
+
+    TCCR1A = _BV(COM1x1) | _BV(WGM11); // = 0b00001010;
+    TCCR1B = _BV(WGM13) | _BV(WGM12) | _BV(CS10); // = 0b00011001;
+
+	backlight_init();
 }
 
 void backlight_set(uint8_t level)
@@ -40,6 +61,8 @@ void backlight_set(uint8_t level)
 		backlight_on();
 		uint8_t pwm = get_pwm_for_brightness(level);
 		set_backlight_pwm(pwm);
+		TCCR1A |= _BV(COM1x1);
+		OCR1x = (level >= 2) ? 0xFFFF : 0x00FF;
 	}
 }
 
@@ -62,7 +85,7 @@ void backlight_off(void)
 }
 
 void set_backlight_pwm(uint8_t level) {
-	OCR1B = level;
+	//OCR1B = level;
 }
 
 #endif // BACKLIGHT_ENABLE
