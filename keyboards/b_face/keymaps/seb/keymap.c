@@ -6,7 +6,7 @@
 
 #define KC_CTLW LCTL(KC_W)
 // comp to zeal60
-#define EF_INC RGB_MOD
+#define EF_INC RGB_SMOD
 
 // [0,13] is either left key of split backspace (e.g. HHKB \| key) or 2U backspace
 // [1,13] is either backslash or ISO Enter
