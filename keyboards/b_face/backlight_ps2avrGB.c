@@ -59,10 +59,10 @@ void backlight_set(uint8_t level)
 	}
 	else {
 		backlight_on();
-		uint8_t pwm = get_pwm_for_brightness(level);
+		/*uint8_t pwm = get_pwm_for_brightness(level);
 		set_backlight_pwm(pwm);
 		TCCR1A |= _BV(COM1x1);
-		OCR1x = (level >= 2) ? 0xFFFF : 0x00FF;
+		OCR1x = (level >= 2) ? 0xFFFF : 0x00FF;*/
 	}
 }
 
