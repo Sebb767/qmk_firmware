@@ -1,6 +1,7 @@
 // Default layout for Zeal60
 
 #include "zeal60.h"
+#include "../../portal_effect.h"
 
 #define KC_CTLW LCTL(KC_W)
 
@@ -100,7 +101,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 					}
 					return false;
 					break;
+		case KC_LGUI:
+		case KC_RGUI:
+					if (record->event.pressed)
+					{
+						addPortal();
+						register_code(keycode);
+					}
+					else
+					{
+						delPortal();
+						unregister_code(keycode);
+					}
+					return false;
+					break;
 	}
-	
+
   return true;
 }

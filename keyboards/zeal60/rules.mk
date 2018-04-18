@@ -6,7 +6,8 @@ SRC =	zeal_backlight.c \
 		zeal_eeprom.c \
 		zeal_keymap.c \
 		IS31FL3731_driver.c \
-		TWIlib.c
+		TWIlib.c \
+		portal_effect.c
 
 # MCU name
 MCU = atmega32u4

@@ -1,5 +1,6 @@
 #include "zeal60.h"
 #include "zeal_backlight.h"
+#include "portal_effect.h"
 
 #include <avr/io.h>
 #include "TWIlib.h"
@@ -743,6 +744,15 @@ ISR(TIMER3_COMPA_vect)
 		uint8_t index;
 		map_row_column_to_led( 0, 0, &index );
         backlight_set_color( index, 255, 255, 255);
+	}
+
+	if(portalOnline()) {
+		// portal effect when super keys are pressed
+		uint8_t index;
+		map_row_column_to_led( 4, 1, &index );
+        backlight_set_color( index, 0, 101, 255);
+		map_row_column_to_led( 4, 11, &index );
+        backlight_set_color( index, 255, 93, 0);
 	}
 
 	if ( ! suspend_backlight )
